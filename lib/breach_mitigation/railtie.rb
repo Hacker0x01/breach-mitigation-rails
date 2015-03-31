@@ -23,7 +23,7 @@ module ActionController
 
     def verified_request?
       !protect_against_forgery? || request.get? || request.head? ||
-        BreachMitigation::MaskingSecrets.valid_authenticity_token?(session, params[request_forgery_protection_token]) ||
+        BreachMitigation::MaskingSecrets.valid_authenticity_token?(session, form_authenticity_param) ||
         BreachMitigation::MaskingSecrets.valid_authenticity_token?(session, request.headers['X-CSRF-Token'])
     end
 
